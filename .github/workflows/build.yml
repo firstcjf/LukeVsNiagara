@@ -1,0 +1,21 @@
+name: Build Unity Android APK
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: game-ci/unity-builder@v2
+        with:
+          targetPlatform: Android
+          unityVersion: 2021.3.25f1
+          androidKeystorePass: password
+          androidKeyaliasName: keyalias
+          androidKeyaliasPass: password
+      - uses: actions/upload-artifact@v3
+        with:
+          name: LukeDrinksNiagara-APK
+          path: build/Android
